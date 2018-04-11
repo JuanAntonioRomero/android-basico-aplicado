@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/fragment"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        class="com.example.everis.android.androidbasicoaplicado.MainFragment"/>
+        android:text="Hello World!"/>
 
 </FrameLayout>
