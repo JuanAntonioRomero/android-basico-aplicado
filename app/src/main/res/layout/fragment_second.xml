@@ -10,18 +10,12 @@
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello again, World!"/>
 
     <TextView
         android:id="@+id/text_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is a default subtitle"/>
-
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"/>
+        android:text="This is another Fragment"/>
 
 </LinearLayout>

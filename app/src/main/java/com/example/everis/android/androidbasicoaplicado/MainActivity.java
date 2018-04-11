@@ -4,11 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FrameLayout mFragmentContainer;
+    public static final int FRAGMENT_CONTAINER = R.id.container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         fragment.setArguments(args);
 
         // Insertar el Fragment en el contenedor
-        mFragmentContainer = findViewById(R.id.container);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.commit();
