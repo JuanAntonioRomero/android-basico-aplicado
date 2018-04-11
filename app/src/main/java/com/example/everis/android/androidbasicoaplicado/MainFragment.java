@@ -9,10 +9,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class MainFragment extends Fragment {
 
+    public static final String ARGS_SUBTITLE = "ARGS_SUBTITLE";
+
     private static final String TAG = "MainFragment";
+
+    private String mTitle;
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
 
     /*
     Este método se llama una sola vez por instancia, cuando el sistema añade el Fragment a una Activity.
@@ -39,7 +48,18 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreateView");
-        return inflater.inflate(R.layout.fragment_main, null);
+
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        TextView titleTextView = view.findViewById(R.id.text_title);
+        if (mTitle != null) {
+            titleTextView.setText(mTitle);
+        }
+
+        TextView subtitleTextView = view.findViewById(R.id.text_subtitle);
+        String subtitle = getArguments().getString(ARGS_SUBTITLE, "Default subtitle");
+        subtitleTextView.setText(subtitle);
+
+        return view;
     }
 
     /*
