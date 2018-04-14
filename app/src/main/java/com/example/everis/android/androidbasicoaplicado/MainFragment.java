@@ -1,7 +1,5 @@
 package com.example.everis.android.androidbasicoaplicado;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
