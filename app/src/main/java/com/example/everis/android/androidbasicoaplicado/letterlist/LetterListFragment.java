@@ -1,6 +1,7 @@
-package com.example.everis.android.androidbasicoaplicado;
+package com.example.everis.android.androidbasicoaplicado.letterlist;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -8,15 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
+
+import com.example.everis.android.androidbasicoaplicado.R;
+import com.example.everis.android.androidbasicoaplicado.characterlist.CharacterListActivity;
 
 public class LetterListFragment extends ListFragment {
 
     private String[] mLetters;
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_letter_list, container, false);
         return view;
     }
@@ -34,7 +36,9 @@ public class LetterListFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "Item: " + mLetters[position], Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), CharacterListActivity.class);
+                intent.putExtra(CharacterListActivity.ARGS_LETTER, mLetters[position]);
+                startActivity(intent);
             }
         });
     }
