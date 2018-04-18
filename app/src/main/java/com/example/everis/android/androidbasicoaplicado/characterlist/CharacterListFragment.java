@@ -27,7 +27,14 @@ public class CharacterListFragment extends ListFragment {
 
     public static final String ARGS_LETTER = "CharacterListFragment_ARGS_LETTER";
 
-    private static final String BASE_URL = "https://gateway.marvel.com/v1/public/characters?nameStartsWith=%s&apikey=3b286e26ac6f7907b051d44e86af4fb6&ts=1&hash=e3c884ef86d9e64e2043be7b9faae261";
+    private static final String BASE_URL = "https://gateway.marvel.com/v1/public/characters";
+    private static final String URL_ARG_LIMIT = "limit=100"; // Asegurar que obtenemos todos los resultados de una letra
+    private static final String URL_ARG_NAME_STARTS_WITH = "nameStartsWith=%s"; // Filtrado por letra
+    private static final String URL_ARG_APIKEY = "apikey=3b286e26ac6f7907b051d44e86af4fb6"; // Clave pública del usuario
+    private static final String URL_ARG_TIMESTAMP = "ts=1"; // Timestamp fijo para pruebas
+    private static final String URL_ARG_HASH = "hash=e3c884ef86d9e64e2043be7b9faae261"; // MD5(timestamp + clave_privada + clave_pública)
+    private static final String URL = BASE_URL + "?" + URL_ARG_LIMIT + "&" + URL_ARG_NAME_STARTS_WITH + "&" + URL_ARG_APIKEY + "&" + URL_ARG_TIMESTAMP + "&" + URL_ARG_HASH;
+
     private ArrayList<MarvelCharacter> mCharacterList;
 
     @Override
@@ -40,13 +47,12 @@ public class CharacterListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String url = String.format(BASE_URL, getArguments().getString(ARGS_LETTER));
+        String url = String.format(URL, getArguments().getString(ARGS_LETTER));
 
         new Api.ApiCallGet(new Api.ApiCallListener() {
             @Override
             public void success(String response) {
                 try {
-
                     mCharacterList = new ArrayList<>();
 
                     JSONObject json = new JSONObject(response);
@@ -109,9 +115,7 @@ public class CharacterListFragment extends ListFragment {
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(android.R.layout.simple_list_item_1, null);
             }
-
             ((TextView) convertView).setText(getItem(position).getName());
-
             return convertView;
         }
     }

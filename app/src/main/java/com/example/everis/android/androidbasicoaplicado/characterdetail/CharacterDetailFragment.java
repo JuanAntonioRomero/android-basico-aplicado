@@ -31,7 +31,6 @@ public class CharacterDetailFragment extends Fragment {
     private TextView mDescriptionTextView;
     private ImageView mImageView;
 
-    private MarvelCharacter mCharacter;
     private Animation mImageAnimation;
 
     @Nullable
@@ -56,12 +55,12 @@ public class CharacterDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mCharacter = (MarvelCharacter) getArguments().getSerializable(ARGS_CHARACTER);
-        mNameTextView.setText(mCharacter.getName());
-        mDescriptionTextView.setText(mCharacter.getDescription());
+        MarvelCharacter character = (MarvelCharacter) getArguments().getSerializable(ARGS_CHARACTER);
+        mNameTextView.setText(character.getName());
+        mDescriptionTextView.setText(character.getDescription());
         mImageView.setImageResource(R.drawable.logo);
 
-        new DownloadImagesTask().execute(new String[]{mCharacter.getImageUrl(MarvelCharacter.SIZE_MEDIUM)});
+        new DownloadImagesTask().execute(new String[]{character.getImageUrl(MarvelCharacter.SIZE_MEDIUM)});
     }
 
     private class DownloadImagesTask extends AsyncTask<String, Void, Bitmap> {
